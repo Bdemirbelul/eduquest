@@ -35,11 +35,11 @@ function randomInt(min: number, max: number): number {
 }
 
 function generateQuestion(settings: MathSettings): Question {
-  const operations =
+  const operations: Operation[] =
     settings.operations && settings.operations.length
       ? settings.operations
-      : ["add"];
-  const op = operations[randomInt(0, operations.length - 1)];
+      : (["add"] as Operation[]);
+  const op: Operation = operations[randomInt(0, operations.length - 1)];
   const [min, max] = getRangeForDifficulty(settings.difficulty ?? "easy");
 
   let a = randomInt(min, max);
