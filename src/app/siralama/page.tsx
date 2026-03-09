@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Crown,
@@ -389,7 +389,7 @@ function filtreleVeSirala(
   return liste;
 }
 
-export default function LeaderboardPage() {
+function LeaderboardPageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState<Filters>(() =>
@@ -1169,3 +1169,10 @@ export default function LeaderboardPage() {
   );
 }
 
+export default function LeaderboardPage() {
+  return (
+    <Suspense fallback={null}>
+      <LeaderboardPageInner />
+    </Suspense>
+  );
+}

@@ -337,8 +337,7 @@ export default function MemoryGame() {
 
               const overlayVisibility = isVisible ? "before:opacity-0" : "";
 
-              const disabled =
-                phase !== "play" || isLocked || phase === "win" || phase === "lose";
+              const disabled = phase !== "play" || isLocked;
 
               return (
                 <button

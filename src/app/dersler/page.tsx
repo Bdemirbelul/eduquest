@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import RightPanel from "@/components/RightPanel";
 import Sidebar from "@/components/Sidebar";
 import { dersler } from "@/constants/subjects";
 
-export default function DerslerPage() {
+function DerslerPageInner() {
   const searchParams = useSearchParams();
   const secSlug = searchParams.get("sec");
 
@@ -124,6 +124,14 @@ export default function DerslerPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function DerslerPage() {
+  return (
+    <Suspense fallback={null}>
+      <DerslerPageInner />
+    </Suspense>
   );
 }
 
